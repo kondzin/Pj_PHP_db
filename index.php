@@ -31,22 +31,18 @@
                 <span>CPF:</span>
                 <input type="text" name="cpf" id="cpf" oninput="maskCPF(this)">
             </div>
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Enviar" name="send">
         </div>
     </form>
     
     <?php
-        if(isset($_POST['cadastro'])) {
+        if(isset($_POST['send'])) {
             $name = mysqli_real_escape_string($connection, $_POST['name']);
-            $email = mysql_real_escape_string($coneection, $_POST['email']);
-            $senha = mysql_real_escape_string($coneection, $_POST['senha']);
+            $email = mysqli_real_escape_string($connection, $_POST['email']);
+            $senha = mysqli_real_escape_string($connection, $_POST['senha']);
             $cpf = mysqli_real_escape_string($connection, $_POST['cpf']);
-            
-            
-            
 
-
-            $sql = "INSERT INTO user (name, cpf) VALUES ('$name', '$cpf')";
+            $sql = "INSERT INTO cadastro (nome, email, senha, cpf) VALUES ('$name', '$email', '$senha', '$cpf')";
 
             if(mysqli_query($connection, $sql)) {
                 echo 'Success!';
